@@ -25,7 +25,7 @@ This document maps the generated source code to architecture responsibilities so
 
 | Path | Responsibility | Notes |
 |---|---|---|
-| `firmware/products/README.md` | Product variant build guide | Documents servo bus, servo PWM, and BLDC variants |
+| `firmware/products/README.md` | Product variant build guide | Documents firmware-level variant configs; current branch hardware implements Servo PWM only |
 | `firmware/products/sgl200-servo-bus.conf` | Servo bus Kconfig selection | Selects `CONFIG_SGL200_ACTUATOR_SERVO_BUS` |
 | `firmware/products/sgl200-servo-bus.overlay` | Servo bus hardware overlay | Empty because base board DTS already enables USART2 single-wire |
 | `firmware/products/sgl200-servo-pwm.conf` | Servo PWM Kconfig selection | Selects `CONFIG_SGL200_ACTUATOR_SERVO_PWM` |
@@ -49,23 +49,21 @@ This document maps the generated source code to architecture responsibilities so
 
 | Path | Responsibility | Notes |
 |---|---|---|
-| `firmware/boards/arm/sgl200_v1/sgl200_v1.dts` | Base board devicetree | Locked v1 pin map, IMU, USART2 servo bus, USART3 MAVLink, LED PWM, ADC, watchdog |
+| `firmware/boards/arm/sgl200_v1/sgl200_v1.dts` | Base board devicetree | Locked v1 pin map, IMU, USART3 MAVLink, LED PWM, ADC, watchdog; Servo PWM overlay disables USART2 |
 | `firmware/boards/arm/sgl200_v1/sgl200_v1_defconfig` | Base board defaults | Enables STM32G431 platform essentials |
 | `firmware/Kconfig` | Application and actuator backend Kconfig | Defines the actuator backend choice |
-| `firmware/prj.conf` | Default firmware config | Defaults to servo-bus actuator variant |
+| `firmware/prj.conf` | Default firmware config | Defaults to servo-PWM actuator variant on this branch |
 | `firmware/CMakeLists.txt` | Zephyr project entry | Adds drivers, libraries, and app layers |
 
 ## Hardware Scaffolding
 
 | Path | Responsibility | Notes |
 |---|---|---|
-| `hardware/README.md` | Hardware workspace index | Links PCB-A, PCB-B, and actuator variant folders |
-| `hardware/common/interface-control.md` | Hardware/firmware interface contract | Mirrors base DTS and product overlays |
+| `hardware/README.md` | Hardware workspace index | Links PCB-A, PCB-B, and the current branch actuator hardware |
+| `hardware/common/interface-control.md` | Hardware/firmware interface contract | Mirrors base DTS and Servo PWM product overlay |
 | `hardware/pcb-a-power/kicad/sgl200-pcb-a-power.kicad_pro` | PCB-A KiCad project placeholder | Scaffold only; no schematic or layout generated |
 | `hardware/pcb-b-control/kicad/sgl200-pcb-b-control.kicad_pro` | PCB-B KiCad project placeholder | Scaffold only; no schematic or layout generated |
-| `hardware/pcb-b-control/variants/sgl200-servo-bus/README.md` | Servo bus hardware variant contract | PA2 USART2 half-duplex Feetech bus |
 | `hardware/pcb-b-control/variants/sgl200-servo-pwm/README.md` | Servo PWM hardware variant contract | PB6/PB7 TIM4 servo PWM outputs |
-| `hardware/pcb-b-control/variants/sgl200-bldc/README.md` | BLDC hardware variant placeholder | Pins intentionally unassigned |
 
 ## Generated Architecture Documents
 

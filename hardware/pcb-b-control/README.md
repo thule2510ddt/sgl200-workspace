@@ -10,7 +10,7 @@ PCB-B contains the STM32G431 control electronics, IMU, MAVLink interface, debug,
 | `docs/` | Board bring-up notes, pin review, and design checklists |
 | `fabrication/` | Future Gerber, drill, stackup, drawing, and fabrication notes |
 | `assembly/` | Future BOM, CPL/position files, assembly drawings, and test instructions |
-| `variants/` | Product-specific actuator wiring contracts |
+| `variants/` | Current branch actuator wiring contract |
 
 ## Base Firmware Pin Contract
 
@@ -28,8 +28,8 @@ PCB-B must match `firmware/boards/arm/sgl200_v1/sgl200_v1.dts`.
 | Debug | SWDIO PA13, SWDCLK PA14, SWO PB3 |
 | FDCAN reserved | PA11 RX, PA12 TX, disabled in v1 |
 
-## Actuator Variants
+## Current Branch Actuator Variant
 
-- [sgl200-servo-bus](variants/sgl200-servo-bus/README.md): USART2 PA2 half-duplex Feetech servo bus.
 - [sgl200-servo-pwm](variants/sgl200-servo-pwm/README.md): TIM4_CH1 PB6 pitch and TIM4_CH2 PB7 yaw PWM servo outputs.
-- [sgl200-bldc](variants/sgl200-bldc/README.md): reserved BLDC hardware interface placeholder.
+
+Servo bus and BLDC actuator hardware belong on their own product branches, not in this Servo PWM branch.

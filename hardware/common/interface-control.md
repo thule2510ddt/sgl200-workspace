@@ -1,15 +1,13 @@
 # SGL-200 Interface Control
 
-This document is the shared hardware/firmware contract for PCB-A, PCB-B, and product actuator variants. It mirrors the active firmware board DTS and product overlays.
+This document is the shared hardware/firmware contract for PCB-A, PCB-B, and the Servo PWM product implemented by the current branch. It mirrors the active firmware board DTS and Servo PWM product overlay.
 
 ## Firmware Sources Of Truth
 
 | Firmware artifact | Hardware meaning |
 |---|---|
 | [`firmware/boards/arm/sgl200_v1/sgl200_v1.dts`](../../firmware/boards/arm/sgl200_v1/sgl200_v1.dts) | Base PCB-B pin map and enabled peripherals |
-| [`firmware/products/sgl200-servo-bus.overlay`](../../firmware/products/sgl200-servo-bus.overlay) | Servo bus product wiring; base DTS already provides USART2 PA2 single-wire |
 | [`firmware/products/sgl200-servo-pwm.overlay`](../../firmware/products/sgl200-servo-pwm.overlay) | Servo PWM product wiring on TIM4_CH1 PB6 and TIM4_CH2 PB7 |
-| [`firmware/products/sgl200-bldc.overlay`](../../firmware/products/sgl200-bldc.overlay) | Reserved BLDC product wiring placeholder |
 
 ## PCB-A To PCB-B Interface
 
@@ -38,16 +36,16 @@ This document is the shared hardware/firmware contract for PCB-A, PCB-B, and pro
 | Debug | PA13 SWDIO, PA14 SWDCLK, PB3 SWO | J-Link, RTT, SystemView |
 | FDCAN reserved | PA11 RX, PA12 TX | Disabled in v1 |
 
-## Actuator Variant Signals
+## Current Branch Actuator Signals
 
-| Variant | Signals | Firmware artifact |
+| Product | Signals | Firmware artifact |
 |---|---|---|
-| Servo bus | USART2 TX PA2, half-duplex single-wire, 1Mbps | [`sgl200-servo-bus.conf`](../../firmware/products/sgl200-servo-bus.conf) |
 | Servo PWM | Pitch TIM4_CH1 PB6, yaw TIM4_CH2 PB7, 50Hz, 1000-2000us pulses, 1500us neutral | [`sgl200-servo-pwm.conf`](../../firmware/products/sgl200-servo-pwm.conf) and [overlay](../../firmware/products/sgl200-servo-pwm.overlay) |
-| BLDC | Reserved | [`sgl200-bldc.conf`](../../firmware/products/sgl200-bldc.conf) and placeholder [overlay](../../firmware/products/sgl200-bldc.overlay) |
+
+USART2 PA2 servo bus hardware and BLDC hardware are intentionally out of scope for this branch.
 
 ## Review Rules
 
 - Do not reuse locked firmware pins without updating the firmware DTS/product overlay and decision log.
 - Keep PCB-A high-power LED switching and PCB-B sensor/control routing separated in schematic sheets and layout constraints.
-- Treat BLDC pins as unassigned until motor transport, position feedback, enable, and fault strategy are selected.
+- Product branches must only include the hardware variant they implement.

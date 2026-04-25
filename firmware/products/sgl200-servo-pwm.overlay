@@ -28,3 +28,7 @@
 		pinctrl-names = "default";
 	};
 };
+
+&usart2 {
+	status = "disabled";
+};
