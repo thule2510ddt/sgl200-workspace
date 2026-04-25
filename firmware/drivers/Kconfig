@@ -1,6 +1,5 @@
 menu "SGL-200 Drivers"
 
 rsource "icm42688/Kconfig"
-rsource "feetech/Kconfig"
 
 endmenu

@@ -21,8 +21,7 @@ These decisions are non-negotiable unless a future decision record explicitly su
 | LED driver | LT8391A 4-switch buck-boost constant-current driver |
 | LED driver switching | 600kHz minimum; do not propose a lower switching frequency |
 | Main LED | Luminus SBT-90.2 Gen3 CW 5600K, about 8500lm at 3A |
-| Gimbal actuator variant | v1 uses Feetech ST3215HS x2, half-duplex UART at 1Mbps; future product variants may use servo PWM or BLDC |
-| Servo IDs | Pitch = ID 1, Yaw = ID 2 |
+| Gimbal actuator variant | Current branch uses servo PWM; servo bus and BLDC belong on separate product branches |
 | MAVLink | MAVLink v2 over USART3 at 921600bps |
 | MAVLink role | Payload implements GIMBAL_DEVICE, not GIMBAL_MANAGER |
 | Component ID | MAV_COMP_ID_GIMBAL = 154 |
@@ -35,7 +34,6 @@ These decisions are non-negotiable unless a future decision record explicitly su
 |---|---|
 | SPI1 IMU | SCK PA5, MISO PA6, MOSI PA7, CS PA4 |
 | IMU interrupt | PB0, active high |
-| v1 servo bus | USART2 TX PA2, half-duplex single-wire |
 | Servo PWM variant | Pitch TIM4_CH1 PB6, yaw TIM4_CH2 PB7, 50Hz, 1000-2000us pulse range |
 | USART3 MAVLink | TX PB10, RX PB11 |
 | Main LED PWM | TIM3 CH1 PB4, 20kHz |

@@ -40,11 +40,11 @@ This file records project decisions that future AI agents must preserve. Add ent
 - Status: Locked.
 - Rationale: Meets SAR spotlight output target in the selected optical and thermal architecture.
 
-### D-007 - Servo Platform
+### D-007 - Actuator Product Branches
 
-- Decision: Use Feetech ST3215HS servos, pitch ID 1 and yaw ID 2, over USART2 half-duplex at 1Mbps.
-- Status: Locked.
-- Rationale: Provides required torque and simple digital control for v1 gimbal actuation.
+- Decision: Actuator-specific firmware and hardware live on separate product branches.
+- Status: Accepted.
+- Rationale: Servo bus, servo PWM, and BLDC products need different hardware and should not appear implemented in the same product branch.
 
 ### D-008 - MAVLink Role
 

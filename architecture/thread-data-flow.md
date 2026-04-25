@@ -19,7 +19,7 @@ flowchart TD
 
     RATE_SP --> CONTROL[control_thread<br/>Priority 1 / 1ms]
     ATTITUDE --> CONTROL
-    CONTROL -->|Actuator commands| ACTUATOR[Gimbal Actuator Backend<br/>Servo Bus / Servo PWM / BLDC]
+    CONTROL -->|Actuator commands| ACTUATOR[Gimbal Servo PWM Backend<br/>Pitch PB6 / Yaw PB7]
 
     ADC[ADC NTC Samples] --> THERMAL[thermal_thread<br/>Priority 6 / 100ms]
     THERMAL -->|Temperature state| THERMAL_STATE[(Thermal State)]

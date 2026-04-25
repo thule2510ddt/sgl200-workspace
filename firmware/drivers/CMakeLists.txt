@@ -1,2 +1,1 @@
 add_subdirectory_ifdef(CONFIG_SGL200_ICM42688 icm42688)
-add_subdirectory_ifdef(CONFIG_SGL200_FEETECH feetech)

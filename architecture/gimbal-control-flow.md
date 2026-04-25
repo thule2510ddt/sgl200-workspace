@@ -30,9 +30,7 @@ flowchart LR
     RATE_SETPOINT --> RATE_PID[Inner Rate PID<br/>1kHz]
     ATTITUDE --> RATE_PID
     RATE_PID -->|Pitch/Yaw angle command| ACTUATOR[Gimbal Actuator Abstraction]
-    ACTUATOR -->|servo-bus variant| SERVO_BUS[Feetech ST3215HS<br/>USART2 half-duplex 1Mbps]
-    ACTUATOR -->|servo-pwm variant| SERVO_PWM[PWM Servo Outputs<br/>reserved]
-    ACTUATOR -->|bldc variant| BLDC[BLDC Motor Control<br/>reserved]
+    ACTUATOR -->|50Hz PWM<br/>1000-2000us pulses| SERVO_PWM[Servo PWM Outputs<br/>Pitch PB6 TIM4_CH1<br/>Yaw PB7 TIM4_CH2]
 
     WATCHDOG[Safety Manager / Watchdog] -->|heartbeat timeout or fault| NEUTRAL
 ```

@@ -1,6 +1,0 @@
-/*
- * SGL-200 servo bus variant.
- *
- * The base sgl200_v1 board already enables USART2 single-wire at 1Mbps for
- * Feetech ST3215HS pitch/yaw servos, so this overlay is intentionally empty.
- */

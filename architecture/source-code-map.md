@@ -16,22 +16,16 @@ This document maps the generated source code to architecture responsibilities so
 |---|---|---|
 | `firmware/app/gimbal_control.c` | Gimbal modes and cascaded angle/rate PID loop | Backend-neutral; writes pitch/yaw angle commands through `gimbal_actuator_set_angle()` |
 | `firmware/app/gimbal_control.h` | Gimbal control public API | Called by `angle_thread` and `control_thread` |
-| `firmware/app/gimbal_actuator.c` | Product actuator facade | Selects servo bus, servo PWM, or BLDC behavior through Kconfig |
+| `firmware/app/gimbal_actuator.c` | Product actuator facade | Implements Servo PWM behavior for this branch |
 | `firmware/app/gimbal_actuator.h` | Backend-neutral actuator API | Defines `GIMBAL_AXIS_PITCH`, `GIMBAL_AXIS_YAW`, init, and set-angle calls |
-| `firmware/drivers/feetech/feetech_servo.c` | Feetech ST3215HS half-duplex UART protocol | Used only by the servo-bus actuator backend |
-| `firmware/drivers/feetech/feetech_servo.h` | Feetech driver API and servo IDs | Pitch ID 1, yaw ID 2 |
 
 ## Product Variants
 
 | Path | Responsibility | Notes |
 |---|---|---|
-| `firmware/products/README.md` | Product variant build guide | Documents firmware-level variant configs; current branch hardware implements Servo PWM only |
-| `firmware/products/sgl200-servo-bus.conf` | Servo bus Kconfig selection | Selects `CONFIG_SGL200_ACTUATOR_SERVO_BUS` |
-| `firmware/products/sgl200-servo-bus.overlay` | Servo bus hardware overlay | Empty because base board DTS already enables USART2 single-wire |
+| `firmware/products/README.md` | Product variant build guide | Documents Servo PWM as the current branch product |
 | `firmware/products/sgl200-servo-pwm.conf` | Servo PWM Kconfig selection | Selects `CONFIG_SGL200_ACTUATOR_SERVO_PWM` |
 | `firmware/products/sgl200-servo-pwm.overlay` | Servo PWM hardware overlay | Pitch TIM4_CH1 PB6, yaw TIM4_CH2 PB7 |
-| `firmware/products/sgl200-bldc.conf` | BLDC Kconfig selection | Selects `CONFIG_SGL200_ACTUATOR_BLDC` |
-| `firmware/products/sgl200-bldc.overlay` | BLDC hardware overlay placeholder | Transport, feedback, enable, and fault pins are still undefined |
 
 ## Sensors, LED, Thermal, MAVLink
 

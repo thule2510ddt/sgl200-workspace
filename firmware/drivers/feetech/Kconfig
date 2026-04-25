@@ -1,4 +1,0 @@
-config SGL200_FEETECH
-	bool "Feetech ST3215HS servo driver"
-	depends on SERIAL
-	default n
