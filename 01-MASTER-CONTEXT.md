@@ -36,6 +36,7 @@ These decisions are non-negotiable unless a future decision record explicitly su
 | SPI1 IMU | SCK PA5, MISO PA6, MOSI PA7, CS PA4 |
 | IMU interrupt | PB0, active high |
 | v1 servo bus | USART2 TX PA2, half-duplex single-wire |
+| Servo PWM variant | Pitch TIM4_CH1 PB6, yaw TIM4_CH2 PB7, 50Hz, 1000-2000us pulse range |
 | USART3 MAVLink | TX PB10, RX PB11 |
 | Main LED PWM | TIM3 CH1 PB4, 20kHz |
 | Thermal ADC | ADC1 IN1 PA0 for NTC_LED, ADC1 IN2 PA1 for NTC_DRIVER |

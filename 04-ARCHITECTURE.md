@@ -24,7 +24,7 @@ External connections:
 | Main LED | White spotlight output | SBT-90.2 Gen3 CW 5600K, >= 8000lm target |
 | STM32G431CBU6 | Real-time control and communication | 170MHz, Zephyr RTOS, CORDIC available |
 | ICM-42688-P | IMU feedback | SPI1 Mode 3, 24MHz max, 1kHz ODR |
-| Gimbal actuator | Pitch and yaw actuation | v1 servo bus uses ST3215HS over USART2 half-duplex, 1Mbps, ID 1/2; future variants may use servo PWM or BLDC |
+| Gimbal actuator | Pitch and yaw actuation | v1 servo bus uses ST3215HS over USART2 half-duplex, 1Mbps, ID 1/2; servo PWM uses TIM4_CH1 PB6 and TIM4_CH2 PB7; future variants may use BLDC |
 | Thermal sensing | LED and driver temperature protection | ADC NTC, throttle at 75C, shutdown at 95C |
 | MAVLink interface | FC and GCS integration | GIMBAL_DEVICE component, not GIMBAL_MANAGER |
 

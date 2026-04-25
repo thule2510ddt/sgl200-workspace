@@ -7,7 +7,7 @@ Product variants select the gimbal actuator backend while keeping the common fir
 | Variant | Config | Overlay | Actuator backend |
 |---|---|---|---|
 | Servo bus | `sgl200-servo-bus.conf` | `sgl200-servo-bus.overlay` | Feetech ST3215HS over USART2 half-duplex |
-| Servo PWM | `sgl200-servo-pwm.conf` | `sgl200-servo-pwm.overlay` | Reserved for PWM servo outputs |
+| Servo PWM | `sgl200-servo-pwm.conf` | `sgl200-servo-pwm.overlay` | Pitch on TIM4_CH1 PB6, yaw on TIM4_CH2 PB7 |
 | BLDC | `sgl200-bldc.conf` | `sgl200-bldc.overlay` | Reserved for BLDC motor control |
 
 ## Build Pattern
@@ -18,4 +18,6 @@ Use a variant config with the base board:
 west build -b sgl200_v1 firmware -- -DEXTRA_CONF_FILE=products/sgl200-servo-bus.conf -DDTC_OVERLAY_FILE=products/sgl200-servo-bus.overlay
 ```
 
-The current implemented backend is `sgl200-servo-bus`. PWM servo and BLDC variants intentionally select their backend Kconfig symbols, but their actuator implementations still return `-ENOTSUP` until the product hardware interface is defined.
+The current implemented backends are `sgl200-servo-bus` and `sgl200-servo-pwm`. The BLDC variant intentionally selects its backend Kconfig symbol, but its actuator implementation still returns `-ENOTSUP` until the product hardware interface is defined.
+
+Servo PWM uses 50Hz output, a 20ms period, 1000-2000us command pulses, and 1500us neutral.

@@ -1,7 +1,30 @@
-/*
- * SGL-200 servo PWM variant placeholder.
- *
- * Add PWM channel aliases and pinctrl here once the product hardware assigns
- * pitch/yaw PWM pins. The common gimbal control code already targets the
- * gimbal_actuator abstraction.
- */
+/ {
+	aliases {
+		gimbal-pitch-pwm = &gimbal_pitch_pwm;
+		gimbal-yaw-pwm = &gimbal_yaw_pwm;
+	};
+
+	pwmservos {
+		compatible = "pwm-leds";
+
+		gimbal_pitch_pwm: gimbal_pitch_pwm {
+			pwms = <&pwm4 1 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+			label = "Gimbal Pitch Servo PWM";
+		};
+
+		gimbal_yaw_pwm: gimbal_yaw_pwm {
+			pwms = <&pwm4 2 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+			label = "Gimbal Yaw Servo PWM";
+		};
+	};
+};
+
+&timers4 {
+	status = "okay";
+
+	pwm4: pwm {
+		status = "okay";
+		pinctrl-0 = <&tim4_ch1_pb6 &tim4_ch2_pb7>;
+		pinctrl-names = "default";
+	};
+};

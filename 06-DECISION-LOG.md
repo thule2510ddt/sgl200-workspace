@@ -83,12 +83,19 @@ This file records project decisions that future AI agents must preserve. Add ent
 - Rationale: SGL-200 products may ship with servo bus, servo PWM, or BLDC actuation while sharing MAVLink, IMU, LED, thermal, and gimbal control logic.
 - Consequences: Control code must call the gimbal actuator abstraction instead of backend-specific drivers such as Feetech directly.
 
+### D-014 - Servo PWM Variant Pin Map
+
+- Decision: Use TIM4_CH1 PB6 for pitch servo PWM and TIM4_CH2 PB7 for yaw servo PWM.
+- Status: Accepted.
+- Rationale: PB6 and PB7 are available on STM32G431CBU6, share TIM4 for paired servo outputs, and avoid locked pins for SPI1, USART2/3, LED PWM, ADC, AUX LEDs, FDCAN, and debug.
+- Consequences: Servo PWM products use 50Hz output with 1000-2000us command pulses and 1500us neutral.
+
 ## Decision Entry Template
 
 Use this template for future decisions:
 
 ```markdown
-### D-014 - Short Title
+### D-015 - Short Title
 
 - Decision: ...
 - Status: Proposed | Accepted | Locked | Superseded.
