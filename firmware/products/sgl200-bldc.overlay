@@ -1,0 +1,6 @@
+/*
+ * SGL-200 BLDC variant placeholder.
+ *
+ * Add BLDC motor controller interfaces here once the product hardware assigns
+ * the motor-control transport, feedback sensors, and enable/fault pins.
+ */

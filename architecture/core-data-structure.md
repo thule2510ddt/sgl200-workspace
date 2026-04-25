@@ -36,9 +36,9 @@ classDiagram
         float output_limit
     }
 
-    class servo_command {
+    class actuator_command {
         int64 timestamp_us
-        uint8 servo_id
+        gimbal_axis axis
         float target_deg
         float velocity_dps
     }
@@ -79,7 +79,7 @@ classDiagram
     imu_sample --> attitude_state : AHRS update
     attitude_state --> gimbal_setpoint : feedback
     gimbal_setpoint --> pid_state : angle/rate control
-    pid_state --> servo_command : output
+    pid_state --> actuator_command : output
 
     led_command --> led_state : command queue
     thermal_state --> led_state : throttle/shutdown input

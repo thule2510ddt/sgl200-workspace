@@ -1,6 +1,6 @@
 # Gimbal Control Flow
 
-This diagram shows command intake through the cascaded gimbal control loops and servo output path.
+This diagram shows command intake through the cascaded gimbal control loops and actuator output path.
 
 ```mermaid
 flowchart LR
@@ -29,8 +29,10 @@ flowchart LR
 
     RATE_SETPOINT --> RATE_PID[Inner Rate PID<br/>1kHz]
     ATTITUDE --> RATE_PID
-    RATE_PID -->|Pitch/Yaw servo command| SERVO_DRIVER[Feetech Servo Driver]
-    SERVO_DRIVER -->|USART2 half-duplex<br/>1Mbps| SERVOS[ST3215HS Pitch/Yaw]
+    RATE_PID -->|Pitch/Yaw angle command| ACTUATOR[Gimbal Actuator Abstraction]
+    ACTUATOR -->|servo-bus variant| SERVO_BUS[Feetech ST3215HS<br/>USART2 half-duplex 1Mbps]
+    ACTUATOR -->|servo-pwm variant| SERVO_PWM[PWM Servo Outputs<br/>reserved]
+    ACTUATOR -->|bldc variant| BLDC[BLDC Motor Control<br/>reserved]
 
     WATCHDOG[Safety Manager / Watchdog] -->|heartbeat timeout or fault| NEUTRAL
 ```

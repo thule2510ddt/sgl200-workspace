@@ -1,9 +1,36 @@
 source "Kconfig.zephyr"
 
+rsource "drivers/Kconfig"
+
 menu "SGL-200 Application Options"
 
 config SGL200
     bool "Enable SGL-200 application"
     default y
+
+choice SGL200_ACTUATOR_BACKEND
+    prompt "SGL-200 gimbal actuator backend"
+    default SGL200_ACTUATOR_SERVO_BUS
+    depends on SGL200
+
+config SGL200_ACTUATOR_SERVO_BUS
+    bool "Servo bus actuator backend"
+    depends on SERIAL
+    select SGL200_FEETECH
+    help
+      Use the Feetech ST3215HS half-duplex UART servo bus backend.
+
+config SGL200_ACTUATOR_SERVO_PWM
+    bool "Servo PWM actuator backend"
+    depends on PWM
+    help
+      Reserve the product variant for PWM hobby-servo style actuation.
+
+config SGL200_ACTUATOR_BLDC
+    bool "BLDC actuator backend"
+    help
+      Reserve the product variant for BLDC motor actuation.
+
+endchoice
 
 endmenu

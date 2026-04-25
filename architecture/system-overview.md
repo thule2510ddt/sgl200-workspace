@@ -12,7 +12,7 @@ flowchart LR
     GCS[Ground Station<br/>Mission Planner or QGroundControl] <-->|Telemetry Link| FC
 
     MCU <-->|SPI1 Mode 3<br/>1kHz ODR| IMU[ICM-42688-P IMU]
-    MCU <-->|USART2 Half-Duplex<br/>1Mbps| SERVOS[ST3215HS Servos<br/>Pitch ID 1 / Yaw ID 2]
+    MCU <-->|Selected Actuator Backend| ACTUATOR[Gimbal Actuator<br/>Servo Bus / Servo PWM / BLDC]
     MCU -->|TIM3 CH1 PWM<br/>20kHz| DRIVER
     THERMAL[LED and Driver NTCs] -->|ADC1 IN1 / IN2| MCU
     MCU -->|GPIO| AUX[AUX LEDs<br/>Red / Blue / IR]

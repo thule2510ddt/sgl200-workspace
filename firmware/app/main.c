@@ -5,10 +5,10 @@
 
 #include "sgl200_types.h"
 #include "icm42688.h"
-#include "feetech_servo.h"
 #include "madgwick_ahrs.h"
 #include "thermal_manager.h"
 #include "led_manager.h"
+#include "gimbal_actuator.h"
 #include "gimbal_control.h"
 #include "mavlink_agent.h"
 
@@ -372,9 +372,9 @@ int main(void)
 	/* Initialise subsystems in order: drivers first, then app layers */
 	int ret;
 
-	ret = feetech_init();
+	ret = gimbal_actuator_init();
 	if (ret) {
-		LOG_ERR("Feetech init failed: %d", ret);
+		LOG_ERR("Gimbal actuator init failed: %d", ret);
 	}
 
 	ret = thermal_manager_init();

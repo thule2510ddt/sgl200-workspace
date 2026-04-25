@@ -76,12 +76,19 @@ This file records project decisions that future AI agents must preserve. Add ent
 - Status: Locked.
 - Rationale: Antigravity loads the workspace skill from the hidden skill directory, while root/package copies are legacy or export material.
 
+### D-013 - Product Actuator Variants
+
+- Decision: Keep one firmware repository and select gimbal actuator hardware through Kconfig/product overlays behind a common actuator abstraction.
+- Status: Accepted.
+- Rationale: SGL-200 products may ship with servo bus, servo PWM, or BLDC actuation while sharing MAVLink, IMU, LED, thermal, and gimbal control logic.
+- Consequences: Control code must call the gimbal actuator abstraction instead of backend-specific drivers such as Feetech directly.
+
 ## Decision Entry Template
 
 Use this template for future decisions:
 
 ```markdown
-### D-013 - Short Title
+### D-014 - Short Title
 
 - Decision: ...
 - Status: Proposed | Accepted | Locked | Superseded.
@@ -89,4 +96,3 @@ Use this template for future decisions:
 - Consequences: ...
 - Supersedes: D-xxx, if applicable.
 ```
-

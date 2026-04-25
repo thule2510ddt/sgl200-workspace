@@ -2,6 +2,7 @@ target_sources(app PRIVATE
 	main.c
 	thermal_manager.c
 	led_manager.c
+	gimbal_actuator.c
 	gimbal_control.c
 	mavlink_agent.c
 )

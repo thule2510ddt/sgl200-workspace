@@ -1,0 +1,7 @@
+/*
+ * SGL-200 servo PWM variant placeholder.
+ *
+ * Add PWM channel aliases and pinctrl here once the product hardware assigns
+ * pitch/yaw PWM pins. The common gimbal control code already targets the
+ * gimbal_actuator abstraction.
+ */

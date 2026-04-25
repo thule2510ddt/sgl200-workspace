@@ -1,8 +1,8 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include "gimbal_control.h"
+#include "gimbal_actuator.h"
 #include "pid.h"
-#include "feetech_servo.h"
 
 LOG_MODULE_REGISTER(gimbal, LOG_LEVEL_INF);
 
@@ -122,24 +122,21 @@ void gimbal_rate_tick(const struct attitude_state_t *att, float dt)
 				      att->gyro_dps[2], dt);
 
 	/*
-	 * Convert PID output (rate-loop) to absolute servo angle.
+	 * Convert PID output (rate-loop) to absolute actuator angle.
 	 * The rate PID output is treated as a delta-position command in deg.
 	 * We maintain a running target angle and clamp to joint limits.
 	 */
-	static float pitch_servo_deg;
-	static float yaw_servo_deg;
+	static float pitch_actuator_deg;
+	static float yaw_actuator_deg;
 
-	pitch_servo_deg += pitch_out * dt;
-	yaw_servo_deg   += yaw_out   * dt;
+	pitch_actuator_deg += pitch_out * dt;
+	yaw_actuator_deg   += yaw_out   * dt;
 
-	if (pitch_servo_deg < PITCH_MIN_DEG) { pitch_servo_deg = PITCH_MIN_DEG; }
-	if (pitch_servo_deg > PITCH_MAX_DEG) { pitch_servo_deg = PITCH_MAX_DEG; }
-	if (yaw_servo_deg   < YAW_MIN_DEG)   { yaw_servo_deg   = YAW_MIN_DEG;   }
-	if (yaw_servo_deg   > YAW_MAX_DEG)   { yaw_servo_deg   = YAW_MAX_DEG;   }
+	if (pitch_actuator_deg < PITCH_MIN_DEG) { pitch_actuator_deg = PITCH_MIN_DEG; }
+	if (pitch_actuator_deg > PITCH_MAX_DEG) { pitch_actuator_deg = PITCH_MAX_DEG; }
+	if (yaw_actuator_deg   < YAW_MIN_DEG)   { yaw_actuator_deg   = YAW_MIN_DEG;   }
+	if (yaw_actuator_deg   > YAW_MAX_DEG)   { yaw_actuator_deg   = YAW_MAX_DEG;   }
 
-	uint16_t pitch_pos = feetech_angle_to_pos(pitch_servo_deg, PITCH_MIN_DEG, PITCH_MAX_DEG);
-	uint16_t yaw_pos   = feetech_angle_to_pos(yaw_servo_deg,   YAW_MIN_DEG,   YAW_MAX_DEG);
-
-	feetech_set_goal_position(FEETECH_ID_PITCH, pitch_pos);
-	feetech_set_goal_position(FEETECH_ID_YAW,   yaw_pos);
+	gimbal_actuator_set_angle(GIMBAL_AXIS_PITCH, pitch_actuator_deg);
+	gimbal_actuator_set_angle(GIMBAL_AXIS_YAW, yaw_actuator_deg);
 }
