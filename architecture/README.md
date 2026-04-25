@@ -20,3 +20,10 @@ The root `04-ARCHITECTURE.md` remains the human-readable architecture summary. K
 | [Gimbal Control Flow](gimbal-control-flow.md) | MAVLink command intake through cascaded gimbal control and actuator output |
 | [MAVLink Message Flow](mavlink-message-flow.md) | Flight controller, ground station, RX/TX thread, ACK, telemetry, and fault reporting interactions |
 | [Core Data Structure](core-data-structure.md) | Main runtime data structures and ownership relationships |
+
+## Source And Branch Maps
+
+| Document | Purpose |
+|---|---|
+| [Source Code Map](source-code-map.md) | Maps generated source files to architecture responsibilities |
+| [Branch Map](branch-map.md) | Records current branch roles, feature dependencies, and merge order |
