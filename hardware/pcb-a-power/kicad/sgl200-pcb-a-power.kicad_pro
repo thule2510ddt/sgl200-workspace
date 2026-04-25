@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "version": 1,
+    "project": "sgl200-pcb-a-power",
+    "status": "scaffold-only"
+  },
+  "notes": "Placeholder KiCad project for PCB-A Power. No schematic, PCB layout, netlist, or production data has been generated yet.",
+  "text_variables": {
+    "BOARD": "PCB-A Power",
+    "PROJECT": "SGL-200",
+    "STATUS": "Scaffold only"
+  }
+}

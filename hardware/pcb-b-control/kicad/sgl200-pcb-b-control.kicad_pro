@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "version": 1,
+    "project": "sgl200-pcb-b-control",
+    "status": "scaffold-only"
+  },
+  "notes": "Placeholder KiCad project for PCB-B Control. No schematic, PCB layout, netlist, or production data has been generated yet.",
+  "text_variables": {
+    "BOARD": "PCB-B Control",
+    "PROJECT": "SGL-200",
+    "STATUS": "Scaffold only"
+  }
+}
