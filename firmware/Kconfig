@@ -1,0 +1,9 @@
+source "Kconfig.zephyr"
+
+menu "SGL-200 Application Options"
+
+config SGL200
+    bool "Enable SGL-200 application"
+    default y
+
+endmenu

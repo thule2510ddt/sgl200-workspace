@@ -1,0 +1,5 @@
+config SGL200_ICM42688
+	bool "ICM-42688-P SPI IMU driver"
+	depends on SPI
+	select GPIO
+	default n

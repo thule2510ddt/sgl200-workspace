@@ -1,0 +1,25 @@
+CompileFlags:
+  Add:
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/zephyr/include"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/build/sgl200_v1/zephyr/include/generated"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/zephyr/soc/arm/st_stm32/stm32g4"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/zephyr/soc/arm/st_stm32/common"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/modules/hal/cmsis/CMSIS/Core/Include"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/modules/hal/stm32/stm32cube/stm32g4xx/soc"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/modules/hal/stm32/stm32cube/stm32g4xx/drivers/include"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/modules/zephyr/lib/libc/newlib/include"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/firmware/app"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/firmware/drivers/icm42688"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/firmware/drivers/feetech"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/firmware/lib/madgwick"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/firmware/lib/pid"
+    - "-I/home/thule/saolatek-workspaces/sgl200-workspace/firmware/lib/mavlink"
+    - "-D__ZEPHYR__=1"
+    - "-DSTM32G431xx"
+    - "-DKERNEL"
+    - "-DCORE_CM4"
+    - "-D__ARM_ARCH_7M__"
+  Compiler: /home/thule/zephyr-sdk-0.17.4/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc
+
+Diagnostics:
+  UnusedIncludes: None

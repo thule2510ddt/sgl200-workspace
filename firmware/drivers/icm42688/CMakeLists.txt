@@ -1,0 +1,3 @@
+zephyr_library_named(sgl200_icm42688)
+zephyr_library_sources(icm42688.c)
+zephyr_library_include_directories(${CMAKE_CURRENT_SOURCE_DIR})

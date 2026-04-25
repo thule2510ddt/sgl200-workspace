@@ -1,0 +1,9 @@
+build/
+.west/
+modules/
+zephyr/
+bootloader/
+compile_commands.json
+.cache/
+.vscode/
+*.log

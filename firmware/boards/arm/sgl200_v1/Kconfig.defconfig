@@ -1,0 +1,15 @@
+if BOARD_SGL200_V1
+
+config GPIO
+	default y
+
+config BOARD
+	default "sgl200_v1"
+
+config SERIAL
+	default y
+
+config SPI
+	default y
+
+endif
